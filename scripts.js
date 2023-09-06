@@ -24,6 +24,17 @@ const handleDragEnd = (event) => {
     updateDraggingHtml({ over: null });
 }
 
+const handleDragOver = (event) => {
+    event.preventDefault();
+    const area = event.target.closest('[data-area]');
+    
+    if (area) {
+        const areaName = area.dataset.area;
+        updateDraggingHtml({ over: areaName });
+    }
+}
+
+
 const handleHelpToggle = () => {
     html.help.overlay.showModal();
 }
@@ -106,4 +117,3 @@ for (const htmlColumn of Object.values(html.columns)) {
 for (const htmlArea of Object.values(html.area)) {
     htmlArea.addEventListener('dragover', handleDragOver);
 }
-
